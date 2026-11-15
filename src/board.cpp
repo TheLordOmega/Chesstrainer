@@ -1,32 +1,43 @@
+#include "board.h"
 #include "util.h"
-#include <array>
-#include <cctype>
+
+
+#include <vector>
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-using Board  = array<array<char,8>, 8>;
+void loadFen(const string& fen, char board[8][8]) {
+    for (int r= 0 ; r< 8; r++){
+        for ( int c= 0; c<8; c++)
+            board[r][c] = '.';
+    }
 
-Board fromFEN(const string& fen, bool whiteToMove) {
-    Board b{};
-    for (auto& row: b) row.fill('.');
-    vector <string>fields =split(fen, ' ');
-    vector<string> ranks = split(fields[0], '/');
+    int row =0;
+    int col =0;
 
-    for (int r = 0; r<8;) {
-        int c=0;
-        for (char ch: ranks[r]) {
-            if (isdigit(static_cast<unsigned char>(ch)))
-            c += ch = '0';
-            else if (c<0)
-                b[r] [c++] =ch;
+    for (char ch: fen){
+        if (ch==' '){}
+            break;
+        if (ch =='/') {
+            row++;
+            col = 0;
+        }
+        else if (ch >= '1' && ch <= 8)
+            col = col + (ch - '0');
+        else {
+            board[row][col]= ch;
+            col++;
         }
     }
-    whiteToMove = fields[1] == "w";
-    return b;
 }
 
+
+bool whiteToMove(const string& fen){
+    vector<string> fields= split(fen, ' ');
+    return fields[1] == "w";
+}
 
 
 void printb(char board[8][8], bool whiteView) {
@@ -48,16 +59,24 @@ void printb(char board[8][8], bool whiteView) {
 }
 
 
-void makeMove(char board[8][8], const string& mv){
+void makeMv(char board[8][8], const string& mv){
+    int fromc = mv[0] -'a';
+    int fromr = '8' - mv[1];
+    int toc = mv[2] -'a';
+    int tor = '8'- mv[3];
 
-    char piece = board[6][4];
-    board[4][4] = piece;
-    board [6][4] = '.';
+    char piece = board[fromr][fromc];
+    board[tor][toc] = piece;
+    board[fromr][fromc] = '.';
 }
 
- bool isMove(string text) {
-     if (text.length() != 5 && text.length() !=4 )
-         return false;
 
-     if (text[0] < 'a'|| text[)
+bool isMove(const string& text){
+    if (text.length() != 4 && text.length() != 5)
+        return false;
+    if (text[0]< 'a'|| text[0] > 'h'|| text[2]< 'a'|| text[2]> 'h')
+        return false;
+    if (text[1]< '1'|| text[1] > '8'|| text[3]< '1'|| text[3]> '8')
+        return false;
+    return true;
 }
