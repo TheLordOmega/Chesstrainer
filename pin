@@ -1,0 +1,2 @@
+//shell to keep some of the puzzles not all ,
+// zstdcat lichess_db_puzzle.csv.zst | awk 'NR ==1 || NR%200==0' > puzzles.csv

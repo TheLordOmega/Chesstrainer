@@ -1,0 +1,17 @@
+started learning C++
+what I've learnt:
+printing, getting input , seperating moves from lichesss puzzle database
+that i downloaded,
+started messing around with vectors and structs
+
+
+
+
+cout <<   - outputs to the console
+cin >>  - inputs from console
+
+
+
+vector<string>name = {1 ,2, 3};
+
+name.push_back("4")
