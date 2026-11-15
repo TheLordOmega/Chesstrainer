@@ -1,6 +1,6 @@
 #include "board.h"
 #include "util.h"
-
+#include <cctype>
 
 #include <vector>
 #include <string>
@@ -68,6 +68,25 @@ void makeMv(char board[8][8], const string& mv){
     char piece = board[fromr][fromc];
     board[tor][toc] = piece;
     board[fromr][fromc] = '.';
+
+    if ((piece == 'P'|| piece =='p')&& fromc !=toc && board[tor][toc] == '.')
+       board[fromr][toc]='.';
+
+
+    if ((piece == 'k' || piece == 'K') && toc -fromc == 2) {
+        board[fromr][5]= board[fromr][7];
+        board[fromr][7] = '.';
+    }
+    if ((piece == 'k'|| piece == 'K') && fromc -toc == 2) {
+        board[fromr][3]= board[fromr][0];
+        board[fromr][0] = '.';
+    }
+    if (mv.length() == 5) {
+        if (piece == 'P')
+            board[tor][toc] = toupper(mv[4]);
+        else
+        board[tor][toc] = mv[4] ;
+    }
 }
 
 

@@ -11,7 +11,7 @@ struct Profile{
     int played= 0;
     int solved= 0;
     int last = 0;
-    int streal = 0;
+    int streak = 0;
 
     vector<string> missed;
 };

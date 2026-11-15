@@ -15,6 +15,11 @@ started working on the icons and board representation for the game, and the math
 defined functions for readding FEN positions
 
 
+started working on the profile system and elo, daily puzzles, and simplified the main.cpp file.
+implemented features like
+en passant
+castling
+and promotion to the moves
 
 
 

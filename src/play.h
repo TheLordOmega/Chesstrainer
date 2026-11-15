@@ -4,6 +4,7 @@
 #include "puzzle.h"
 #include <string>
 
+
 using namespace std;
 
 string askMove();
