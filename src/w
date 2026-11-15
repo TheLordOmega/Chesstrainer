@@ -1,0 +1,6 @@
+
+    bool light = (r+ c) % 2 == 0;
+    cout << squareText(board[r][c], light);
+
+
+    cin >> in
