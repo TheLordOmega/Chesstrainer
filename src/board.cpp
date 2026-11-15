@@ -46,3 +46,18 @@ void printb(char board[8][8], bool whiteView) {
         cout << file << " ";
     }
 }
+
+
+void makeMove(char board[8][8], const string& mv){
+
+    char piece = board[6][4];
+    board[4][4] = piece;
+    board [6][4] = '.';
+}
+
+ bool isMove(string text) {
+     if (text.length() != 5 && text.length() !=4 )
+         return false;
+
+     if (text[0] < 'a'|| text[)
+}
