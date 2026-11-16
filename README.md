@@ -17,3 +17,29 @@ it can:
 
 
 sources:
+Codecademy course.
+to learn how to  write header files : 
+https://www.learncpp.com/cpp-tutorial/header-guards/
+
+how vectors work: 
+https://www.w3schools.com/cpp/cpp_vectors.asp
+and Codecademy course.
+
+
+board.cpp and board.h
+
+main.cpp
+
+play.h and play.cpp :
+
+profile.cpp  and profile.h:
+
+puzzle.cpp and puzzle.h: 
+https://database.lichess.org/#puzzles
+https://www.w3schools.com/cpp/cpp_files.asp
+https://www.w3schools.com/cpp/cpp_break.aspdude
+
+trainer.cpp and trainer.h:
+
+util.cpp and util.h:
+https://en.cppreference.com/w/cpp/string/basic_string/getline

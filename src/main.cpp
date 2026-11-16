@@ -31,23 +31,35 @@ int main() {
              << "1. Daily puzzle \n"
              << "2. Practice \n"
              << "3. My stats \n"
-             << "4. Rating graph \n"
-             << "5. Quit \n"
+             << "4. Review\n "
+             << "5. Rating graph \n"
+             << "6. Quit \n"
              << " Choose: ";
         int choice = 0;
          cin >> choice;
-         if (cin.fail() || choice == 5) {
+         if (cin.fail() || choice == 6) {
              cout << "GoodBye!";
              break;
          }
-        if (choice == 1)
-            dailyPuzzle(puzzles, me);
-        else if (choice ==2)
-            practice(puzzles, me);
-        else if  (choice == 3)
-            showStats(me);
-        else if (choice == 4)
-            showGraph();
-        }
-        return 0;
+         switch (choice) {
+             case 1:
+                 dailyPuzzle(puzzles, me);
+                 break;
+             case 2:
+                practice(puzzles, me);
+                break;
+             case 3:
+                showStats(me);
+                break;
+             case 4:
+                 review(puzzles,me);
+                 break;
+             case 5:
+                 showGraph();
+                 break;
+            default:
+                cout << "Select an option";
+    }
+    }
+
     }
