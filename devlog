@@ -23,6 +23,25 @@ and promotion to the moves
 
 
 
+
+finished the bare version of the code,
+the program has many features currently as a beggining:
+- creates a chess board
+- imports puzzles from the lichess csv file
+- imports a beggning postion from FEN writing
+- creates icons based on position of arrays
+- features like daily puzzles
+- save history, completed puzzles, failed  puzzles
+-
+
+
+
+
+using namespace std; - always at the beggning
+
+#include <iostream> needed.
+
+
 cout <<   - outputs to the console
 cin >>  - inputs from console
 
