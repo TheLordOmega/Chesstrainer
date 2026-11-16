@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <string>
 
 
@@ -32,3 +33,7 @@ string squareText(char piece, bool light) {
     string reset = "";
     return background + colour + " " + pieceIcon(piece)+ " " + reset;
 }
+
+
+bool light = (r + c) % 2 == 0 ;
+cout << squareText(board[r][c], light);

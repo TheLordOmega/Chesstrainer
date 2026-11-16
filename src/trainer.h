@@ -13,5 +13,10 @@ vector<int> puzzlesNear(const vector<Puzzle>& puzzles, double rating);
 
 void dailyPuzzle(const vector<Puzzle>& puzzles, Profile& me);
 
+void afterpuzzle(const Puzzle& p, bool won, Profile& me);
+void practice (const vector<Puzzle>& puzzles, Profile& me);
+
+void showStats(const Profile& me);
+void showGraph();
 
 #endif

@@ -18,6 +18,8 @@ string askMove(){
         if (isMove(answer))
             return answer;
     cout << "Type a move like e2e4";
+    if (isMove(answer) || answer == "hint")
+        return answer
     }
 }
 
@@ -43,6 +45,11 @@ bool playPuzzle(const Puzzle& p){
     for (int i= 1; i < totalmv ; i = i+2) {
         printb(board, pWhite);
         string answer = askMove();
+
+        if (answer == "hint") {
+            cout << "Hint : move piece " << p.moves[i].substr(0,2) << ".\n";
+            answer = askMove();
+        }
         if (answer != p.moves[i]) {
             cout << "wrong move, solution was" << p.moves[i] << ".\n";
             return false;

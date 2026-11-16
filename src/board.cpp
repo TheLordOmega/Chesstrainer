@@ -54,7 +54,7 @@ void printb(char board[8][8], bool whiteView) {
     cout << "  ";
     for (int j = 0; j < 8; j++) {
         char file = whiteView ? 'a' + j : 'h' - j;
-        cout << file << " ";
+        cout << " " << file << " ";
     }
 }
 

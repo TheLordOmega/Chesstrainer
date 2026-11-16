@@ -24,11 +24,18 @@ void SaveProfile(const Profile& me) {
     file << me.rating << " " << me.played << " " << me.solved << "\n";
 
     file << me.last << " " << me.streak << "\n";
+
+    ofstream missedFile("missed.txt");
+    for (const string& id: me.missed)
+        missedFile << id << "\n";
 }
 
 void LoadProfile( const Profile&  me) {
     ofstream file("profile.txt");
     file >> me.rating >> me.played >> me.solved>> me.last >> me.streak;
-
-
+    ifstream missedFile("missed.txt");
+    string id;
+    while (missedFile >> id) {
+        me.missed.push_back(id);
+    }
 }
