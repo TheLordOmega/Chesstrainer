@@ -4,13 +4,11 @@
 #include <iostream>
 #include <string>
 
-
 using namespace std;
-
 
 string askMove(){
     while (true){
-        cout << "Your move:";
+        cout << "Your move: ";
         string answer;
         cin >> answer;
         if (cin.fail())
@@ -26,10 +24,9 @@ bool playPuzzle(const Puzzle& p){
     char board[8][8];
     loadFen(board, p.fen);
 
-
-    cout << "\n Puzzle" <<p.id << ", rated" << p.rating << "\n";
+    cout << "\n Puzzle" << p.id << ", rated" << p.rating << "\n";
     Makemv(board, p.moves[0]);
-    cout<< "Your opponent played" << p.moves[0] << ".\n";
+    cout<< "move played" << p.moves[0] << ".\n";
 
     bool pWhite = true;
         if (whiteToMove(p.fen)) {

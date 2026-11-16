@@ -1,2 +1,15 @@
 //shell to keep some of the puzzles not all ,
 // zstdcat lichess_db_puzzle.csv.zst | awk 'NR ==1 || NR%200==0' > puzzles.csv
+
+
+
+string squareText(char piece, bool light) {
+    string background = "";
+    if (light)
+        background = "";
+    string colour = "";
+    if (isupper(piece))
+        colour = "";
+    string reset = "";
+    return background + colour + " " + pieceIcon(piece)+ " " + reset;
+}

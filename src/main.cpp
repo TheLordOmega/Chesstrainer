@@ -33,8 +33,7 @@ int main() {
              << "3. My stats \n"
              << "4. Review\n "
              << "5. Rating graph \n"
-             << "6. Quit \n"
-             << " Choose: ";
+             << "6. Quit \n";
         int choice = 0;
          cin >> choice;
          if (cin.fail() || choice == 6) {
@@ -61,5 +60,4 @@ int main() {
                 cout << "Select an option";
     }
     }
-
     }

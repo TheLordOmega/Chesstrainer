@@ -50,3 +50,11 @@ cin >>  - inputs from console
 vector<string>name = {1 ,2, 3};
 
 name.push_back("4")
+
+
+Week2:
+
+started by simplified the if else with a switch "function"
+making main.cpp simpler
+simplified most of the code
+added

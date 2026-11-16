@@ -71,14 +71,17 @@ string squareText(char piece, bool light) {
 }
 
 
-
 void printb(char board[8][8], bool whiteView) {
     cout << "\n";
     for (int i = 0; i < 8; i++) {
-        int r = whiteView ? i : 7 - i;       // Black sees rank 1 at the top
+        int r = i;
+        if (!whiteView)
+            r = 7 - i;
         cout << 8 - r << " ";
         for (int j = 0; j < 8; j++) {
-            int c = whiteView ? j : 7 - j;
+            int c = j;
+            if (!whiteView)
+                c = 7 - j;
             bool light = (r + c) % 2 == 0;
             cout << squareText(board[r][c], light);
         }
@@ -122,13 +125,19 @@ void Makemv(char board[8][8], const string& mv){
     }
 }
 
+bool isFile(char c) {
+    return c >= 'a' && c <= 'h';
+}
+bool isRank(char r){
+    return r >= '1' && r <= '8';
+}
 
 bool isMove(const string& text){
     if (text.length() != 4 && text.length() != 5)
         return false;
-    if (text[0]< 'a'|| text[0] > 'h'|| text[2]< 'a'|| text[2]> 'h')
+    if (!isFile(text[0]) || !isFile(text[2]))
         return false;
-    if (text[1]< '1'|| text[1] > '8'|| text[3]< '1'|| text[3]> '8')
+    if (!isRank(text[1]) || !isRank(text[3]))
         return false;
     return true;
 }
