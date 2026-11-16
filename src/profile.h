@@ -1,7 +1,8 @@
 #ifndef profile_h
-#define profile_h ;
+#define profile_h
 
 #include <string>
+#include <type_traits>
 #include <vector>
 using namespace std;
 
@@ -15,5 +16,9 @@ struct Profile{
 
     vector<string> missed;
 };
+
+void updateRating(Profile& me, int puzzleRating, bool won);
+void saveProfile(const Profile& me);
+void loadProfile(Profile& me);
 
 #endif

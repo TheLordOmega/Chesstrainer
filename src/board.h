@@ -1,5 +1,5 @@
-#ifndef Puzzle_h
-#define Puzzle_h
+#ifndef board_h
+#define board_h
 
 #include <string>
 using namespace std;

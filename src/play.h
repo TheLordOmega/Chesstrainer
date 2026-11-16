@@ -9,5 +9,5 @@ using namespace std;
 
 string askMove();
 
-bool playpuzzle(const Puzzle& p);
+bool playPuzzle(const Puzzle& p);
 #endif

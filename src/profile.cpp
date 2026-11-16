@@ -19,7 +19,7 @@ void updateRating(Profile& me, int puzzleRating, bool won) {
     cout << "Rating:" << round(old) << "->" << round(me.rating) << "\n";
 }
 
-void SaveProfile(const Profile& me) {
+void saveProfile(const Profile& me) {
     ofstream file("profile.txt");
     file << me.rating << " " << me.played << " " << me.solved << "\n";
 
@@ -30,8 +30,8 @@ void SaveProfile(const Profile& me) {
         missedFile << id << "\n";
 }
 
-void LoadProfile( const Profile&  me) {
-    ofstream file("profile.txt");
+void loadProfile( Profile&  me) {
+    ifstream file("profile.txt");
     file >> me.rating >> me.played >> me.solved>> me.last >> me.streak;
     ifstream missedFile("missed.txt");
     string id;

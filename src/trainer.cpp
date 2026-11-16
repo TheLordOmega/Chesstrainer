@@ -1,5 +1,6 @@
 #include "trainer.h"
 #include "play.h"
+#include "profile.h"
 
 
 #include <cmath>
@@ -31,10 +32,10 @@ vector <int> puzzlesNear(const vector<Puzzle>& puzzles, double rating) {
 
 void afterPuzzle(const Puzzle &p, bool won, Profile &me) {
     updateRating(me, p.rating, won);
-    saveProfile(me);
 
     if (!won)
         me.missed.push_back(p.id);
+    saveProfile(me);
     ofstream history("history.txt", ios::app);
     history << round(me.rating) << "\n";
 }
@@ -43,13 +44,14 @@ void afterPuzzle(const Puzzle &p, bool won, Profile &me) {
 
 void dailyPuzzle(const vector<Puzzle>& puzzles, Profile& me) {
     int day = today();
-    if (me.last == day)
-        cout << "Already completed today's puzzle";
+    if (me.last == day){
+        cout << "Already completed today's puzzle\n";
     return;
+    }
     vector<int> near = puzzlesNear(puzzles, me.rating);
     int pick = near[day % near.size()];
     const Puzzle& p= puzzles[pick];
-    bool won = playpuzzle(p);
+    bool won = playPuzzle(p);
     if (me.last == day -1)
         me.streak++;
     else
@@ -57,7 +59,7 @@ void dailyPuzzle(const vector<Puzzle>& puzzles, Profile& me) {
 
     me.last = day;
     afterPuzzle(p, won, me);
-    cout << "streak:" << me.streak << "days";
+    cout << "streak:" << me.streak << "days\n";
 }
 
 void practice(const vector<Puzzle>& puzzles, Profile& me) {
@@ -71,7 +73,7 @@ void practice(const vector<Puzzle>& puzzles, Profile& me) {
 
 void review(const vector<Puzzle>& puzzles, Profile& me) {
     if (me.missed.empty()) {
-        cout << "no Puzzles to review";
+        cout << "no Puzzles to review\n";
             return;
     }
     string id = me.missed[0];
@@ -81,7 +83,14 @@ void review(const vector<Puzzle>& puzzles, Profile& me) {
     for (int i = 1; i < totalmv ; i++)
         rest.push_back(me.missed[i]);
     me.missed = rest;
-
+    for (const Puzzle& p: puzzles){
+        if(p.id == id){
+            if (!playPuzzle(p))
+                me.missed.push_back(id);
+            break;
+        }
+    }
+    saveProfile(me);
 }
 
 void showStats(const Profile& me){

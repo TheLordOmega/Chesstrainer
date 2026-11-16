@@ -22,7 +22,10 @@ int main() {
         cout << "No puzzles found!";
         return 1;
     }
-    cout << "type hint to see which piece to move. \n"
+    Profile me;
+    loadProfile(me);
+    cout << "Your rating: " << round(me.rating) << ".\n";
+    cout << "type hint to see which piece to move. \n";
     while (true) {
         cout << "\n"
              << "1. Daily puzzle \n"
@@ -34,7 +37,7 @@ int main() {
         int choice = 0;
          cin >> choice;
          if (cin.fail() || choice == 5) {
-             cout >> "GoodBye!";
+             cout << "GoodBye!";
              break;
          }
         if (choice == 1)
@@ -45,14 +48,6 @@ int main() {
             showStats(me);
         else if (choice == 4)
             showGraph();
+        }
         return 0;
     }
-
-
-
-    Profile me;
-    loadProfile(me);
-    cout << "Chess Puzzle Trainer: " << puzzles.size() << "puzzles, your rating:"
-        <<round(me.rating) <<".\n";
-    dailyPuzzle(puzzles,me);
-}
