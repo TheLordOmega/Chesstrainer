@@ -66,3 +66,10 @@ houe 2:
 during this hour, i started a new test program that makes testing features easier, i implemented it with the move, and split functions
 i followed this guide:
 https://www.learncpp.com/cpp-tutorial/introduction-to-testing-your-code/
+
+i also started making the checker that sees if moves are fully legal or not, so that it doesnt just say a move isnt the solution.
+
+
+hour 3:
+  i have implemented during this hour and a half,
+   implemented most of the rules for the engine, the

@@ -95,6 +95,19 @@ void printb(char board[8][8], bool whiteView) {
 }
 
 
+
+Move parseMove(const string &mv) {
+    Move m;
+    m.fromCol = mv[0] -'a';
+    m.fromRow = '8'-  mv[1] ;
+    m.toCol = mv[2] -'a' ;
+    m.toRow  = '8' - mv[3];
+    if (mv.length() == 5)
+        m.promotion = mv[4];
+    return m;
+}
+
+
 void Makemv(char board[8][8], const string& mv){
     int fromc = mv[0] -'a';
     int fromr = '8' - mv[1];

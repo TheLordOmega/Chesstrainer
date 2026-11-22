@@ -4,6 +4,7 @@
 #include "profile.h"
 #include "puzzle.h"
 
+#include <map>
 #include <vector>
 using namespace std;
 
@@ -20,5 +21,7 @@ void review(const vector<Puzzle>& puzzles, Profile& me);
 
 void showStats(const Profile& me);
 void showGraph();
+
+map<string, int>themeCounts(const vector<Puzzle>& puzzles);
 
 #endif

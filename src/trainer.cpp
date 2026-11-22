@@ -8,6 +8,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include <map>
+
 
 using namespace std;
 
@@ -110,4 +112,13 @@ void showGraph(){
             length = 1;
     cout << r << " " << string(length, '#') << "\n";
     }
+}
+
+map<string, int> themeCounts(const vector<Puzzle>& puzzles) {
+    map<string, int>counts;
+    for (const Puzzle& p:puzzles) {
+        for (const string& theme: p.themes)
+        counts[theme]++;
+    }
+    return counts;
 }

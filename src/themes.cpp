@@ -4,8 +4,8 @@
 
 using namespace std;
 
-map<string, int>themes = {{"light", 33},
-    {"dark", 44}, {"amoled", 355}};
+map<string, int>themes = {{"knight", 33},
+    {"checks", 44}, {"sacrifice", 355}};
 
  int main() {
      cout << "light mode" << themes.at("light") << "\n";
