@@ -14,6 +14,10 @@ it can:
  then open the directory and run chess 
  and play!
 
+##Why i built this:
+as a chess enthusiasts and raching 1000 elo last year, i fell in love with this game, but i found that puzzles are a bit hard to be motivated to do, 
+i thus deicided to build this engine as a way to reconnect with chess again but also something that'll help me regain what i ahve forgotten and also improve at chess!
+
 
 
 sources:

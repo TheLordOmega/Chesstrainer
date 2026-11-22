@@ -58,3 +58,11 @@ started by simplified the if else with a switch "function"
 making main.cpp simpler
 simplified most of the code
 added
+
+
+
+houe 2:
+
+during this hour, i started a new test program that makes testing features easier, i implemented it with the move, and split functions
+i followed this guide:
+https://www.learncpp.com/cpp-tutorial/introduction-to-testing-your-code/

@@ -1,0 +1,8 @@
+
+
+if eye = see then play
+else illgal move
+if eye = see king
+check
+if eye blocked || eye = see king
+ x is pinned
