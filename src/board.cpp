@@ -36,9 +36,10 @@ void loadFen(char board[8][8], const string& fen) {
 
 bool whiteToMove(const string& fen){
     vector<string> fields= split(fen, ' ');
+    if (fields.size() < 2)
+        return true;
     return fields[1] == "w";
 }
-
 
 
 string pieceIcon (char piece) {
@@ -59,19 +60,27 @@ string pieceIcon (char piece) {
 }
 
 
-string squareText(char piece, bool light) {
-    string background = "";
+string squareText(char piece, bool light, bool marked) {
+    string background = "\033[48;2;135;95;66m";
     if (light)
-        background = "";
-    string colour = "";
+        background = "\033[48;2;180;135;99m";
+    if (marked && light)
+        background = "\033[48;2;205; 210; 105";
+    else if (marked)
+        background = "\033[48;2;17-;160;58m";
+    string colour = "\033[38;2;0;0;0m";
     if (isupper(piece))
-        colour = "";
-    string reset = "";
+        colour = "\033[38;2;255;255;255m";
+    string reset = "\033[0m";
     return background + colour + " " + pieceIcon(piece)+ " " + reset;
 }
 
 
-void printb(char board[8][8], bool whiteView) {
+void printb(char board[8][8], bool whiteView, const string& last) {
+    bool hasLast = isMove(last);
+    Move m;
+    if (hasLast)
+        m = parseMove(last);
     cout << "\n";
     for (int i = 0; i < 8; i++) {
         int r = i;
@@ -83,7 +92,10 @@ void printb(char board[8][8], bool whiteView) {
             if (!whiteView)
                 c = 7 - j;
             bool light = (r + c) % 2 == 0;
-            cout << squareText(board[r][c], light);
+            bool isStart = r == m.fromRow && c == m.fromCol;
+            bool isEnd = r == m.toRow && c == m.toCol;
+            bool marked = hasLast && (isStart || isEnd);
+            cout << squareText(board[r][c], light, marked);
         }
         cout << "\n";
     }
@@ -153,4 +165,13 @@ bool isMove(const string& text){
     if (!isRank(text[1]) || !isRank(text[3]))
         return false;
     return true;
+}
+
+string cleanMove( const string& text) {
+    string clean ="";
+    for (char c : text) {
+        if (c!= '-')
+            clean += tolower(c);
+    }
+    return clean;
 }

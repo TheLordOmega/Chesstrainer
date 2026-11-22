@@ -26,4 +26,6 @@ bool isMove(const string& text);
 
 
 void copyBoard(char from[8][8], char to[8][8]);
+
+string cleanMove(const string& text);
 #endif

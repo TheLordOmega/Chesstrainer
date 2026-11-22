@@ -24,4 +24,6 @@ void showGraph();
 
 map<string, int>themeCounts(const vector<Puzzle>& puzzles);
 
+void streakMode(const vector<Puzzle>& puzzles);
+
 #endif

@@ -102,3 +102,7 @@ Move a = parseMove("e2e4")
     char b[8][8];
     loadFen(b, "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3");
     if (!ismate(b, true)) return 31;
+
+
+    if (cleanMove("E2-E4") != "e2e4") return 32;
+    if (cleanMove("HINT") != "hint") return 33;

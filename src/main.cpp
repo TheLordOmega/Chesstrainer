@@ -33,7 +33,8 @@ int main() {
              << "3. My stats \n"
              << "4. Review\n "
              << "5. Rating graph \n"
-             << "6. Quit \n";
+             << "6. Quit \n"
+             << "7.Streak mode \n";
         int choice = 0;
          cin >> choice;
          if (cin.fail() || choice == 6) {
@@ -55,6 +56,9 @@ int main() {
                  break;
              case 5:
                  showGraph();
+                 break;
+             case 7:
+                 streakMode(puzzles);
                  break;
             default:
                 cout << "Select an option";

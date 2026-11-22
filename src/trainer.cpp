@@ -1,6 +1,7 @@
 #include "trainer.h"
 #include "play.h"
 #include "profile.h"
+#include "puzzle.h"
 
 
 #include <cmath>
@@ -29,8 +30,20 @@ vector <int> puzzlesNear(const vector<Puzzle>& puzzles, double rating) {
         for (int i= 0 ; i < totalmv;i++ )
                 near.push_back(i);
     }
+    if (abs(puzzles[i].rating -rating) <= 200 && hasTheme(puzzles[i], theme))
+    void practiceTheme(const vector<Puzzle>& puzzles, Profile& me) {
+        cout << "Which theme do you want to train";
+        string theme;
+        cin >> theme;
+        if (themeCounts(puzzles).counnt(theme) == 0) {
+            cout << "No puzzle has the theme" << theme << ".\n";
+            return;
+        }
+        practice(puzzles, me, theme);
+    }
     return near;
 }
+
 
 void afterPuzzle(const Puzzle &p, bool won, Profile &me) {
     updateRating(me, p.rating, won);
@@ -121,4 +134,20 @@ map<string, int> themeCounts(const vector<Puzzle>& puzzles) {
         counts[theme]++;
     }
     return counts;
+}
+
+
+void streakMode(const vector<Puzzle>& puzzles) {
+    cout << "streak: the more uou get right in a row, the harder the puzzles get \n";
+    double rating = 800;
+    int streak = 0;
+    while (true) {
+        vector<int> near = puzzlesNear(puzzles, rating, "");
+        const Puzzle& p = puzzles[near[rand() % near.size()]];
+        if (!playPuzzle(p))
+            break;
+        streak = streak + 1;
+        rating = rating + 100;
+    }
+    cout << "streak:" << streak << "\n";
 }

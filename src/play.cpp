@@ -3,10 +3,22 @@
 #include "rules.h"
 
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 
+#include <chrono>
+#include <cmath>
+
+
+using namespace std::chrono;
 using namespace std;
+
+auto start = steady_clock::now();
+
+    duration<double> took = steady_clock::now() - start;
+    std::cout << "Solved in" << round(took.count() * 10) / 10 << "seconds \n";
+
 
 string askMove(){
     while (true){

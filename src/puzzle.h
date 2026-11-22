@@ -15,4 +15,5 @@ struct Puzzle
 };
 vector<Puzzle> loadPuzzles(const string& file);
 
+bool hasTheme(const Puzzle& p, const string& theme);
 #endif

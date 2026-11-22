@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include <iostream>
 
 
 using namespace std;
@@ -23,9 +23,23 @@ vector<Puzzle>loadPuzzles(const string& file) {
         one.id = f[0];
         one.fen = f[1];
         one.moves = split(f[2], ' ');
+        try {
         one.rating = stoi(f[3]);
+        } catch (...) {
+            continue;
+        }
         one.themes =split(f[7], ' ');
         puzzles.push_back(one);
     }
     return puzzles;
+}
+
+bool hasTheme(const Puzzle& p, const string& theme) {
+    if (theme.empty())
+        return true;
+    for (const string& t: p.themes) {
+        if (t == theme)
+            return true;
+    }
+    return false;
 }
