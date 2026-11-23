@@ -9,6 +9,9 @@ it can:
 - features like daily puzzles
 - save history, completed puzzles, failed  puzzles
 
+  <img width="738" height="781" alt="image" src="https://github.com/user-attachments/assets/fe2ad7c1-45c6-434f-8989-722da4f9b25b" />
+
+
 ## Week2 
 - every move is checked against the chess rules: illegal moves are refused, pinned pieces included
 - Check! and Checkmate!
