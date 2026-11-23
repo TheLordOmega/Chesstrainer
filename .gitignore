@@ -1,0 +1,8 @@
+src/chess
+tests/rulest
+tests/tests
+*.tar.gz
+*.zip
+src/profile.txt
+src/history.txt
+src/missed.txt

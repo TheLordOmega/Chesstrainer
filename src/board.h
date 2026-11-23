@@ -9,7 +9,7 @@ void loadFen(char board[8][8], const string& fen);
 
 bool whiteToMove(const string& fen);
 
-void printb(char board[8][8], bool whiteView);
+void printb(char board[8][8], bool whiteView, const string& last);
 
 struct Move {
     int fromRow= 0 ;

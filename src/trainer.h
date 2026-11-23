@@ -10,12 +10,12 @@ using namespace std;
 
 int today();
 
-vector<int> puzzlesNear(const vector<Puzzle>& puzzles, double rating);
+vector<int> puzzlesNear(const vector<Puzzle>& puzzles, double rating, const string& theme);
 
 void dailyPuzzle(const vector<Puzzle>& puzzles, Profile& me);
 
 void afterPuzzle(const Puzzle& p, bool won, Profile& me);
-void practice (const vector<Puzzle>& puzzles, Profile& me);
+void practice(const vector<Puzzle>& puzzles, Profile& me, const string& theme);
 
 void review(const vector<Puzzle>& puzzles, Profile& me);
 
@@ -25,5 +25,5 @@ void showGraph();
 map<string, int>themeCounts(const vector<Puzzle>& puzzles);
 
 void streakMode(const vector<Puzzle>& puzzles);
-
+void practiceTheme(const vector<Puzzle>& puzzles, Profile& me);
 #endif

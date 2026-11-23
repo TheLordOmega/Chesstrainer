@@ -11,11 +11,9 @@ DEPS = $(patsubst %, $(ODIR)/%, $(_DEPS))
 _OBJ = hellomake.- hellofunc.o
 OBJ =  $(patsubst %, $(ODIR)/%, $(_OBJ))
 
-$(ODIR)/%.o: %.c $(DEPS)
-	    $(CC) -c -o $@ $< $(CFLAGS)
-hellomake: $(OBJ)
-$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+run : src/chess
+	cd src && ./chess
 
-.PHONY: clean
+.PHONY: test run  clean
 clean:
 rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~

@@ -18,32 +18,21 @@ int today(){
     return (time(nullptr) + 19800) / 86400;
 }
 
-vector <int> puzzlesNear(const vector<Puzzle>& puzzles, double rating) {
+vector<int> puzzlesNear(const vector<Puzzle>& puzzles, double rating, const string& theme) {
     vector<int> near;
     int totalmv = puzzles.size();
 
     for (int i= 0 ; i < totalmv;i++ ) {
-        if (abs(puzzles[i].rating - rating) <= 200)
+        if (abs(puzzles[i].rating - rating) <= 200 && hasTheme(puzzles[i], theme))
             near.push_back(i);
     }
     if (near.empty()){
         for (int i= 0 ; i < totalmv;i++ )
+            if (hasTheme(puzzles[i], theme))
                 near.push_back(i);
-    }
-    if (abs(puzzles[i].rating -rating) <= 200 && hasTheme(puzzles[i], theme))
-    void practiceTheme(const vector<Puzzle>& puzzles, Profile& me) {
-        cout << "Which theme do you want to train";
-        string theme;
-        cin >> theme;
-        if (themeCounts(puzzles).counnt(theme) == 0) {
-            cout << "No puzzle has the theme" << theme << ".\n";
-            return;
-        }
-        practice(puzzles, me, theme);
     }
     return near;
 }
-
 
 void afterPuzzle(const Puzzle &p, bool won, Profile &me) {
     updateRating(me, p.rating, won);
@@ -60,10 +49,10 @@ void afterPuzzle(const Puzzle &p, bool won, Profile &me) {
 void dailyPuzzle(const vector<Puzzle>& puzzles, Profile& me) {
     int day = today();
     if (me.last == day){
-        cout << "Already completed today's puzzle\n";
+        cout << "You already did today's puzzle.\n";
     return;
     }
-    vector<int> near = puzzlesNear(puzzles, me.rating);
+    vector<int> near = puzzlesNear(puzzles, me.rating, "");
     int pick = near[day % near.size()];
     const Puzzle& p= puzzles[pick];
     bool won = playPuzzle(p);
@@ -74,21 +63,31 @@ void dailyPuzzle(const vector<Puzzle>& puzzles, Profile& me) {
 
     me.last = day;
     afterPuzzle(p, won, me);
-    cout << "streak:" << me.streak << "days\n";
+    cout << "Streak: " << me.streak << " days\n";
 }
 
-void practice(const vector<Puzzle>& puzzles, Profile& me) {
-    vector<int> near= puzzlesNear(puzzles, me.rating);
+void practice(const vector<Puzzle>& puzzles, Profile& me, const string& theme) {
+    vector<int> near = puzzlesNear(puzzles, me.rating, theme);
     int pick = near[rand() % near.size()];
     const Puzzle& p= puzzles[pick];
     bool won= playPuzzle(p);
     afterPuzzle(p, won,me);
 }
 
+void practiceTheme(const vector<Puzzle>& puzzles, Profile& me) {
+    cout << "Which theme? ";
+    string theme;
+    cin >> theme;
+    if (themeCounts(puzzles).count(theme) == 0) {
+        cout << "No puzzles with the theme " << theme << ".\n";
+        return;
+    }
+    practice(puzzles, me, theme);
+}
 
 void review(const vector<Puzzle>& puzzles, Profile& me) {
     if (me.missed.empty()) {
-        cout << "no Puzzles to review\n";
+        cout << "No puzzles to review.\n";
             return;
     }
     string id = me.missed[0];
@@ -109,11 +108,11 @@ void review(const vector<Puzzle>& puzzles, Profile& me) {
 }
 
 void showStats(const Profile& me){
-    cout << "\n Rating:" << round(me.rating) << "\n";
+    cout << "\nRating: " << round(me.rating) << "\n";
 
-    cout  << "Solved:" << me.solved << "of" << me.played << "puzzles\n";
-    cout << "streak: " << me.streak << "days \n";
-    cout << "Puzzles to review: " << me.missed.size();
+    cout << "Solved: " << me.solved << " of " << me.played << " puzzles\n";
+    cout << "Streak: " << me.streak << " days\n";
+    cout << "Puzzles to review: " << me.missed.size() << "\n";
 }
 
 void showGraph(){
@@ -138,7 +137,7 @@ map<string, int> themeCounts(const vector<Puzzle>& puzzles) {
 
 
 void streakMode(const vector<Puzzle>& puzzles) {
-    cout << "streak: the more uou get right in a row, the harder the puzzles get \n";
+    cout << "Streak mode: the more you get right in a row, the harder the puzzles get.\n";
     double rating = 800;
     int streak = 0;
     while (true) {
@@ -149,5 +148,5 @@ void streakMode(const vector<Puzzle>& puzzles) {
         streak = streak + 1;
         rating = rating + 100;
     }
-    cout << "streak:" << streak << "\n";
+    cout << "Streak: " << streak << "\n";
 }

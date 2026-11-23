@@ -18,7 +18,7 @@ bool isBlack(char piece) {
 bool isKnightmv (const Move& m) {
     int rows = abs(m.toRow - m.fromRow);
     int cols = abs(m.toCol - m.fromCol);
-    return (rows==2 && cols == 1 || rows == 1 && cols== 2);
+    return (rows == 2 && cols == 1) || (rows == 1 && cols == 2);
 }
 
 bool isKingmv (const Move& m) {
@@ -79,7 +79,7 @@ bool canReach(char board[8][8], const Move& m) {
         case 'q':
             return isqueenmv(board, m);
         case 'p':
-            return ispawnmv(board, m);
+            return isPawnmv(board, m);
         default:
             return false;
     }
@@ -130,8 +130,8 @@ bool inCheck(char board[8][8], bool white) {
         king = 'K';
     int kingRow = -1;
     int kingCol = -1;
-    for (int r= 0; r < 8 ; r++) {
-        for (int c= 0 ; c< 8 ; c++) {
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
             if (board[r][c] == king) {
                 kingRow = r;
                 kingCol = c;
@@ -140,18 +140,19 @@ bool inCheck(char board[8][8], bool white) {
     }
     if (kingRow == -1)
         return false;
-    for (int r=0; r <8; r++){
-        for (int c= 0 ; c <8 ; c++) {
+
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
             char piece = board[r][c];
-            if (piece == '.'|| isWhite(piece)== white)
+            if (piece == '.' || isWhite(piece) == white)
                 continue;
             Move m;
             m.fromRow = r;
             m.fromCol = c;
             m.toRow = kingRow;
-            m.toCol =  kingCol;
-                if (canReach(board, m))
-            return true;
+            m.toCol = kingCol;
+            if (canReach(board, m))
+                return true;
         }
     }
     return false;
@@ -166,7 +167,7 @@ void copyBoard(char from[8][8], char to[8][8]) {
 }
 
 
-bool islegal(char board[8][8], const string& mv, bool white) {
+bool isLegal(char board[8][8], const string& mv, bool white) {
     if (!canMove(board, parseMove(mv), white))
         return false;
     char after[8][8];
@@ -177,7 +178,7 @@ bool islegal(char board[8][8], const string& mv, bool white) {
 
 
 
-int coutlegalmv(char board[8][8], bool white) {
+int countLegalMoves(char board[8][8], bool white) {
     int count = 0;
     for (int fr = 0 ; fr < 8 ; fr++)
         for (int fc = 0; fc < 8; fc++)
@@ -188,8 +189,13 @@ int coutlegalmv(char board[8][8], bool white) {
                     mv[1] = '8' -fr;
                     mv[2] = 'a' +tc;
                     mv[3] = '8' - tr;
-                    if (islegal(board, mv, white))
+                    if (isLegal(board, mv, white))
                         count = count + 1;
                 }
     return count;
+}
+
+
+bool isMate(char board[8][8], bool white) {
+    return inCheck(board, white) && countLegalMoves(board, white) == 0;
 }

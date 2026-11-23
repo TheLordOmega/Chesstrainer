@@ -16,7 +16,7 @@ void updateRating(Profile& me, int puzzleRating, bool won) {
     me.played++;
     if (won)
         me.solved++;
-    cout << "Rating:" << round(old) << "->" << round(me.rating) << "\n";
+    cout << "Rating: " << round(old) << " -> " << round(me.rating) << "\n";
 }
 
 void saveProfile(const Profile& me) {

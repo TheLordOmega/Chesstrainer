@@ -51,7 +51,7 @@ string pieceIcon (char piece) {
     else if (p == 'q')
         return "♛";
     else if (p == 'p')
-        return "♟";
+        return "♙";
     else if (p == 'b')
         return "♝";
     else if (p== 'r')
@@ -65,9 +65,9 @@ string squareText(char piece, bool light, bool marked) {
     if (light)
         background = "\033[48;2;180;135;99m";
     if (marked && light)
-        background = "\033[48;2;205; 210; 105";
+        background = "\033[48;2;205;210;105m";
     else if (marked)
-        background = "\033[48;2;17-;160;58m";
+        background = "\033[48;2;170;160;58m";
     string colour = "\033[38;2;0;0;0m";
     if (isupper(piece))
         colour = "\033[38;2;255;255;255m";

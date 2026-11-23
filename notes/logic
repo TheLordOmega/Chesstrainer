@@ -6,3 +6,21 @@ if eye = see king
 check
 if eye blocked || eye = see king
  x is pinned
+
+
+
+
+
+
+
+if (abs(puzzles[i].rating -rating) <= 200 && hasTheme(puzzles[i], theme))
+    void practiceTheme(const vector<Puzzle>& puzzles, Profile& me) {
+        cout << "Which theme do you want to train";
+        string theme;
+        cin >> theme;
+        if (themeCounts(puzzles).counnt(theme) == 0) {
+            cout << "No puzzle has the theme" << theme << ".\n";
+            return;
+        }
+        practice(puzzles, me, theme);
+    }

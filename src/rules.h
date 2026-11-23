@@ -5,8 +5,8 @@
 
 bool isWhite( char piece);
 bool isBlack( char piece);
-bool isKnightmv(char piece);
-bool isKingmv(char piece);
+bool isKnightmv(const Move& m);
+bool isKingmv(const Move& m);
 
 bool pathClear(char board[8][8], const Move& m);
 
@@ -20,14 +20,14 @@ bool canReach(char board[8][8], const Move& m);
 
 bool canMove(char board[8][8], const Move& m, bool white);
 
-bool ispawnmv( char board[8][8], const Move& m);
+bool isPawnmv( char board[8][8], const Move& m);
 
-bool isCheck(char board[8][8], bool white);
+bool inCheck(char board[8][8], bool white);
 
 bool isLegal(char board[8][8], const string& mv, bool white);
 
-int countlegalmv(char board[8][8], bool white);
+int countLegalMoves(char board[8][8], bool white);
 
-bool ismate(char board[8][8], bool white);
+bool isMate(char board[8][8], bool white);
 
 #endif
